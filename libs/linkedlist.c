@@ -1,4 +1,5 @@
 #include "linkedlist.h"
+#include "string.h"
 
 static Node* _head = NULL;
 static Node* _tail = NULL;
@@ -41,21 +42,16 @@ void print_file(FILE* stream){
 void clear() {
     Node* curr = _tail->prev;
     whlie(curr != _head) {
-        curr = curr->prev;
-        delete_node(curr->next);
+        curr = delete_node(curr);
     }
     printf("LinkedList is cleared!");
 }
 
 Node* append_left(size_t n, char new_data[n]){
-    Node* curr = _head;
-    int i;
-    for(i=0;i<n;i++) {
-        Node new = {new_data[i],curr,curr->next};
-        curr->next->prev = &new;
-        curr->next = new;
-        curr = new;
-    }
+    Node* newNode = {"", _head, _head->next};
+    _head->next = newNode;
+    strcpy(newNode->data, new_data);
+    return newNode;
 }
 
 Node* insert_after(Node* cur_node, Node* new_node){
@@ -65,12 +61,19 @@ Node* insert_after(Node* cur_node, Node* new_node){
     new_node->prev = cur_node;
 }
 
-Node* append(size_t n, char new_date[n]){}
+Node* append(size_t n, char new_date[n]){
+    Node* newNode = {"", _tail->prev, _tail};
+    _tail->prev = newNode;
+    strcpy(newNode->data, new_data);
+    return newNode;
+}
 
 Node* delete_node(Node* cur_node){
+    _cur_node = cur_node->prev;
     cur_node->next->prev = cur_node->prev;
     cur_node->prev->next = cur_node->next;
-    return cur_node
+    free(cur_node);
+    return _cur_node;
 }
 
 Node* delete(char* data){
