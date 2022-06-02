@@ -1,7 +1,10 @@
 #include<stdio.h>
 #include<string.h>
-#include<textfileWriter.h>
+
 #include<linkedlist.h>
+#include<textfileWriter.h>
+
+void read_command(char** cmds);
 
 void add(char* name);
 void del(char* name);
@@ -16,6 +19,10 @@ void load(char* fileName);
 void save(char* fileName);
 
 int main() {
+    
+}
+
+void read_command(char** cmds) {
     
 }
 

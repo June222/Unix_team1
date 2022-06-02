@@ -1,7 +1,9 @@
+#ifndef LINKEDLIST_LINKEDLIST_H
+#define LINKEDLIST_LINKEDLIST_H
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <stddef.h>
-#include <string.h>
 #include "node.h"
 
 bool empty();
@@ -20,3 +22,5 @@ Node* first_node();
 Node* last_node();
 Node* next();
 Node* prev();
+
+#endif //LINKEDLIST_LINKEDLIST_H#endif //LINKEDLIST_LINKEDLIST_H

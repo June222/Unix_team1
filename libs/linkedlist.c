@@ -59,6 +59,7 @@ Node* insert_after(Node* cur_node, Node* new_node){
     new_node->next = cur_node->next;
     cur_node->next = new_node;
     new_node->prev = cur_node;
+    _cur_node = new_node;
     return _cur_node;
 }
 
@@ -100,11 +101,21 @@ Node* get_node(size_t index){
 }
 
 Node* first_node() {
+    if(empty()) {
+        _cur_node = _head;
+        printf("List가 비었습니다.\n");
+        return NULL;
+    }
     _cur_node = _head->next;
     return _cur_node;
 }
 
 Node* last_node() {
+    if(empty()) {
+        _cur_node = _head;
+        printf("List가 비었습니다.\n");
+        return NULL;
+    }
     _cur_node = _tail->prev;
     return _cur_node;
 }
