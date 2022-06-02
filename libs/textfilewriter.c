@@ -2,7 +2,7 @@
 #include "textfilewriter_2.h"
 #define MAX_TITLE_SIZE 50
 
-void create_music_titles(FILE* stream) { // ÇÑÁÙ¾¿ ÆÄÀÏÀÇ ³»¿ëÀ» ÀĞ´Â °Í ±îÁö ±¸Çö
+void create_music_titles(FILE* stream) { // í•œì¤„ì”© íŒŒì¼ì˜ ë‚´ìš©ì„ ì½ëŠ” ê²ƒ ê¹Œì§€ êµ¬í˜„
 	char* music_titles;
 	char buffer[1000];
 
@@ -10,17 +10,20 @@ void create_music_titles(FILE* stream) { // ÇÑÁÙ¾¿ ÆÄÀÏÀÇ ³»¿ëÀ» ÀĞ´Â °Í ±îÁö ±¸
 		music_titles = fgets(buffer, sizeof(buffer), stream);
 		printf("%s", music_titles);
 	}
+
 }
-void read_file(char* file_name) { // ÆÄÀÏÀÇ ÀÌ¸§Àº test.txt·Î °íÁ¤ÇÏ°í ±¸ÇöÇÏ¿´À½ -> ÀÌ´Â Player.c¿¡¼­ ÀûÀ½
-	// ÆÄÀÏ Æ÷ÀÎÅÍ¿¡ text¸¦ ¹èÁ¤ÇÏ°í create_m_t()ÇÔ¼öÀÇ ÀÎÀÚ·Î ³Ñ°ÜÁÜ.
+void read_file(char* file_name) { // íŒŒì¼ì˜ ì´ë¦„ì€ test.txtë¡œ ê³ ì •í•˜ê³  êµ¬í˜„í•˜ì˜€ìŒ -> ì´ëŠ” Player.cì—ì„œ ì ìŒ
+	// íŒŒì¼ í¬ì¸í„°ì— textë¥¼ ë°°ì •í•˜ê³  create_m_t()í•¨ìˆ˜ì˜ ì¸ìë¡œ ë„˜ê²¨ì¤Œ.
 	FILE* fp = NULL;
 	if (fopen_s(&fp, file_name, "r") == 0) {
-		printf("ÆÄÀÏÀ» ¿­¾ú½À´Ï´Ù.\n");
+		printf("íŒŒì¼ì„ ì—´ì—ˆìŠµë‹ˆë‹¤.\n");
 		create_music_titles(fp);
 	}
 	else {
-		printf("ÆÄÀÏÀ» ¿­Áö ¸øÇß½À´Ï´Ù.\n");
+		printf("íŒŒì¼ì„ ì—´ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.\n");
 	}
 
 	fclose(fp);
+
+
 }
