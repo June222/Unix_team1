@@ -122,15 +122,15 @@ TEST(TestLinkedList, AppendLeft) {
 }
 
 TEST(TestLinkedList, NextAndPrev) {
-    // int NUM_OF_MUSIC = 3;
-    // char** music_titles = NULL;
-    // music_titles = (char**)malloc(sizeof(char*) * NUM_OF_MUSIC);
-    // for (int i=0; i < NUM_OF_MUSIC; i++){
-    //     music_titles[i] = (char*)malloc(sizeof(char) * MAX_TITLE_SIZE);
-    // }
-    // music_titles[0] = (char*)"Hello"; 
-    // music_titles[1] = (char*)"Enemy"; 
-    // music_titles[2] = (char*)"abc";
+    int NUM_OF_MUSIC = 3;
+    char** music_titles = NULL;
+    music_titles = (char**)malloc(sizeof(char*) * NUM_OF_MUSIC);
+    for (int i=0; i < NUM_OF_MUSIC; i++){
+        music_titles[i] = (char*)malloc(sizeof(char) * MAX_TITLE_SIZE);
+    }
+    music_titles[0] = (char*)"Hello"; 
+    music_titles[1] = (char*)"Enemy"; 
+    music_titles[2] = (char*)"abc";
     append_left(sizeof(music_titles[0]), music_titles[0]);
     Node* cur_node = append_left(sizeof(music_titles[1]), music_titles[1]);
     EXPECT_STREQ(cur_node->data, music_titles[1]);

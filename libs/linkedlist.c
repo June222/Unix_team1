@@ -1,5 +1,6 @@
 #include "linkedlist.h"
 #include "string.h"
+#include <stdlib.h>
 
 static Node* _head = NULL;
 static Node* _tail = NULL;
@@ -40,16 +41,16 @@ void print_file(FILE* stream){
 
 void clear() {
     Node* curr = _tail->prev;
-    whlie(curr != _head) {
+    while(curr != _head) {
         curr = delete_node(curr)->prev;
     }
     printf("LinkedList is cleared!");
 }
 
-Node* append_left(size_t n, char new_data[n]){
-    Node* newNode = {"", _head, _head->next};
+Node* append_left(size_t n, char new_data[]){
+    Node* newNode;
+    *newNode = {(char*)malloc(sizeof(char)*n), _head, _head->next};
     _head->next = newNode;
-    newNode->data = molloc(size_of(char)*n);
     strcpy(newNode->data, new_data);
     return newNode;
 }
@@ -63,10 +64,10 @@ Node* insert_after(Node* cur_node, Node* new_node){
     return _cur_node;
 }
 
-Node* append(size_t n, char new_date[n]){
-    Node* newNode = {"", _tail->prev, _tail};
+Node* append(size_t n, char new_data[]){
+    Node* newNode;
+    *newNode = {(char*)malloc(sizeof(char)*n), _tail->prev, _tail};
     _tail->prev = newNode;
-    newNode->data = molloc(size_of(char)*n);
     strcpy(newNode->data, new_data);
     return newNode;
 }
@@ -91,7 +92,7 @@ Node* delete_by_data(char* data){
 
 Node* get_node(size_t index){
     size_t now_index = 0;
-    Node* curr = head->next;
+    Node* curr = _head->next;
     while(now_index < index) {
         if(curr == _tail) return NULL;
         curr = curr->next;
