@@ -1,8 +1,10 @@
+
+#pragma warning(disable: 4996)
 #include<stdio.h>
 #include<string.h>
 
-#include<linkedlist.h>
-#include<textfileWriter.h>
+#include "linkedlist.h"
+#include "textfilewriter.h"
 
 int main() {
     int InpCnt = 0;
