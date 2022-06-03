@@ -1,5 +1,6 @@
 #include "linkedlist.h"
 #include "string.h"
+#include <stdlib.h>
 
 static Node* _head = NULL;
 static Node* _tail = NULL;
@@ -30,25 +31,25 @@ void print() {
 }
 
 void print_file(FILE* stream){
-    fprintf(stream,"LinkedList [");
-    Node* curr = _head->next;
-    while(curr != _tail) {
-        fprintf(stream," %s",curr->data);
-        curr = curr->next;
+    fprintf(stream,"%d\n",size());
+    Node* curr = _tail->prev;
+    while(curr != _head) {
+        fprintf(stream,"%s\n",curr->data);
+        curr = curr->prev;
     }
-    fprintf(" ]\n");
 }
 
 void clear() {
     Node* curr = _tail->prev;
-    whlie(curr != _head) {
-        curr = delete_node(curr);
+    while(curr != _head) {
+        curr = delete_node(curr)->prev;
     }
     printf("LinkedList is cleared!");
 }
 
-Node* append_left(size_t n, char new_data[n]){
-    Node* newNode = {"", _head, _head->next};
+Node* append_left(size_t n, char new_data[]){
+    Node* newNode;
+    *newNode = {(char*)malloc(sizeof(char)*n), _head, _head->next};
     _head->next = newNode;
     strcpy(newNode->data, new_data);
     return newNode;
@@ -59,24 +60,27 @@ Node* insert_after(Node* cur_node, Node* new_node){
     new_node->next = cur_node->next;
     cur_node->next = new_node;
     new_node->prev = cur_node;
+    _cur_node = new_node;
+    return _cur_node;
 }
 
-Node* append(size_t n, char new_date[n]){ // cÇ¥ÁØ: array¸¦ ÀÌ·¸°Ô ³Ñ±â¶ó°í µÇ¾îÀÖÀ½.
-    Node* newNode = {"", _tail->prev, _tail};
+Node* append(size_t n, char new_data[]){
+    Node* newNode;
+    *newNode = {(char*)malloc(sizeof(char)*n), _tail->prev, _tail};
     _tail->prev = newNode;
     strcpy(newNode->data, new_data);
     return newNode;
 }
 
 Node* delete_node(Node* cur_node){
-    _cur_node = cur_node->prev;
+    _cur_node = cur_node->next;
     cur_node->next->prev = cur_node->prev;
     cur_node->prev->next = cur_node->next;
     free(cur_node);
     return _cur_node;
 }
 
-Node* delete(char* data){
+Node* delete_by_data(char* data){
     Node* curr = _head->next;
     while(curr != _tail) {
         if(strcmp(curr->data,data) == 0) {
@@ -87,8 +91,8 @@ Node* delete(char* data){
 }
 
 Node* get_node(size_t index){
-    size_t now_index = 0;
-    Node* curr = head->next;
+    size_t now_index = 1;
+    Node* curr = _head->next;
     while(now_index < index) {
         if(curr == _tail) return NULL;
         curr = curr->next;
@@ -97,64 +101,34 @@ Node* get_node(size_t index){
     return curr;
 }
 
-Node* first() { // ¼öÁ¤ ¹× º¸ÃæÇÔ.
-    Node* first_node = _head->next;
-
-    if (empty()) {
+Node* first_node() {
+    if(empty()) {
         _cur_node = _head;
-        printf("list°¡ ºñ¾ú½À´Ï´Ù.\n");
+        printf("Listê°€ ë¹„ì—ˆìŠµë‹ˆë‹¤.\n");
         return NULL;
     }
-    else {
-        _cur_node = first_node;
-        return first_node;
-    }
+    _cur_node = _head->next;
+    return _cur_node;
 }
 
-Node* last() { // ¼öÁ¤ ¹× º¸ÃæÇÔ
-    Node* last_node = _tail->prev;
-    if (empty()) {
+Node* last_node() {
+    if(empty()) {
         _cur_node = _head;
-        printf("list°¡ ºñ¾ú½À´Ï´Ù.\n");
+        printf("Listê°€ ë¹„ì—ˆìŠµë‹ˆë‹¤.\n");
         return NULL;
     }
-    else {
-        _cur_node = last_node;
-        return last_node;
-    }
-
+    _cur_node = _tail->prev;
+    return _cur_node;
 }
 
-Node* next() { // »õ·Î ÀÛ¼ºÇÔ.
-    Node* next_node = _cur_node->next;
-    if (empty()) {
-        _cur_node = _head;
-        printf("list°¡ ºñ¾ú½À´Ï´Ù.\n");
-        return NULL;
-    }
-    else if (!empty() && _cur_node->next == _tail) {
-
-        return _cur_node;
-    }
-    else {
-        _cur_node = next_node;
-        return next_node;
-    }
+Node* next() {
+    if(_cur_node != _tail && _cur_node->next != _tail)
+        _cur_node = _cur_node->next;
+    return _cur_node;
 }
 
-Node* prev() { // »õ·Î ÀÛ¼ºÇÔ.
-    Node* prev_node = _cur_node->prev;
-    if (empty()) {
-        _cur_node = _head;
-        printf("list°¡ ºñ¾ú½À´Ï´Ù.\n");
-        return NULL;
-    }
-    else if (!empty() && _cur_node->prev == _head) {
-
-        return _cur_node;
-    }
-    else {
-        _cur_node = prev_node;
-        return prev_node;
-    }
+Node* prev() {
+    if(_cur_node != _head && _cur_node->prev != _head)
+        _cur_node = _cur_node->prev;
+    return _cur_node;
 }

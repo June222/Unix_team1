@@ -1,70 +1,60 @@
+
 #pragma warning(disable: 4996)
-#include <stdio.h>
-#include "node_2.h"
-#include "textfilewriter_2.h"
+#include<stdio.h>
+#include<string.h>
+
+#include "linkedlist.h"
+#include "textfilewriter.h"
 
 int main() {
-	char input_order[10]; // 명령어
-	int count_order; // 명령어 받을 횟수
+    int InpCnt = 0;
+    scanf("%d",&InpCnt);
+    for(;InpCnt>0;InpCnt--) {
+        char* songName;
+        scanf(" %s",songName);
+        append_left(strlen(name),name);
+    }
+    scanf("%d",&InpCnt);
+    for(;InpCnt>0;InpCnt--) {
+        char* cmd;
+        scanf(" %s",cmd);
+        if(strcpy(cmd,"add")==0) {
+            char* name;
+            scanf(" %s",name);
+            append_left(strlen(name),name);
+        }else if(strcpy(cmd,"del")==0) {
+            char* name;
+            scanf(" %s",name);
+            delete_by_data(name);
+        }else if(strcpy(cmd,"list")==0) {
+            print();
+        }else if(strcpy(cmd,"next")==0) {
+            next();
+        }else if(strcpy(cmd,"prev")==0) {
+            prev();
+        }else if(strcpy(cmd,"move")==0) {
+            int index;
+            scanf("%d",&index);
+            Node* copyNode;
+            *copyNode = {(char*)malloc(sizeof(char)*strlen(_cur_node->data)),NULL,NULL};
+            insert_after(get_node(index),copyNode);
+            delete_node(_cur_node);
+        }else if(strcpy(cmd,"play")==0) {
+            printf("%s is now playing!\n",_cur_node->data);
+        }else if(strcpy(cmd,"clear")==0) {
+            clear();
+        }else if(strcpy(cmd,"quit")==0) {
+            clear();
+            printf("quit!");
+            return 0;
+        }else if(strcpy(cmd,"load")==0) {
+            char* fileName;
+            scanf(" %s",fileName);
 
-	scanf_s("%d", &count_order);
+        }else if(strcpy(cmd,"save")==0) {
+            char* fileName;
+            scanf(" %s",fileName);
 
-	for (int i = 0; i < count_order; i++) {
-
-		scanf_s("%s", input_order, (unsigned int)sizeof(input_order));
-
-		char order_first_char = input_order[0]; // order의 첫번째와 두번째로 명령어를 구분
-		char order_second_char = input_order[1];
-
-		if (order_first_char == 'a') {
-
-			printf("%s", input_order);
-			printf("앞에 띄어쓰기?");
-		}
-		else if (order_first_char == 'd') {
-
-		}
-		else if (order_first_char == 'l') {
-			if (order_second_char == 'i') {
-
-			}
-			else if (order_second_char == 'o') { // load : 파일 읽고 생성하기 아직 구현이 다 안됨
-				read_file("test.txt");
-			}
-		}
-		else if (order_first_char == 'n') {
-
-		}
-		else if (order_first_char == 'p') {
-			if (order_second_char == 'r') {
-
-			}
-			else if (order_second_char == 'l') {
-
-			}
-		}
-		else if (order_first_char == 'm') {
-
-		}
-		else if (order_first_char == 'c') {
-
-		}
-		else if (order_first_char == 'q') {
-
-		}
-		else if (order_first_char == 's') { // save : 파일 쓰기
-
-			write_file("test.txt");
-		}
-		else {
-			printf("%s", input_order);
-			printf("앞에 띄어쓰기?");
-		}
-
-
-
-
-
-	}
-	return 0;
+        }
+    }
 }

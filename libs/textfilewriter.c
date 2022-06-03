@@ -1,5 +1,7 @@
 #include <stdio.h>
-#include "textfilewriter_2.h"
+
+#include "textfilewriter.h"
+
 #define MAX_TITLE_SIZE 50
 
 void create_music_titles(FILE* stream) { // 한줄씩 파일의 내용을 읽는 것 까지 구현
@@ -10,8 +12,8 @@ void create_music_titles(FILE* stream) { // 한줄씩 파일의 내용을 읽는
 		music_titles = fgets(buffer, sizeof(buffer), stream);
 		printf("%s", music_titles);
 	}
-
 }
+
 void read_file(char* file_name) { // 파일의 이름은 test.txt로 고정하고 구현하였음 -> 이는 Player.c에서 적음
 	// 파일 포인터에 text를 배정하고 create_m_t()함수의 인자로 넘겨줌.
 	FILE* fp = NULL;
@@ -22,11 +24,10 @@ void read_file(char* file_name) { // 파일의 이름은 test.txt로 고정하�
 	else {
 		printf("파일을 열지 못했습니다.\n");
 	}
-
+	
 	fclose(fp);
-
-
 }
+
 void write_file(char* file_name) { // song_list의 문자열을 txt파일에 작성하는 함수.
 	char* song_list = "Hello\nEnemy\nabc";
 	int num;
@@ -45,6 +46,6 @@ void write_file(char* file_name) { // song_list의 문자열을 txt파일에 작
 	else {
 		puts("실패\n");
 	}
-
+	
 	fclose(fp);
 }
