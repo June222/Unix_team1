@@ -27,3 +27,24 @@ void read_file(char* file_name) { // 파일의 이름은 test.txt로 고정하�
 
 
 }
+void write_file(char* file_name) { // song_list의 문자열을 txt파일에 작성하는 함수.
+	char* song_list = "Hello\nEnemy\nabc";
+	int num;
+
+	FILE* fp = NULL;
+	num = fopen_s(&fp, file_name, "wt");
+	if (num == 0) {
+		puts("파일오픈성공\n");
+		if (fputs(song_list, fp) == 0) {
+			printf("입력됐음\n");
+		}
+		else {
+			printf("입력이 안 됐음\n");
+		}
+	}
+	else {
+		puts("실패\n");
+	}
+
+	fclose(fp);
+}

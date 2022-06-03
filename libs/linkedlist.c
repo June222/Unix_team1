@@ -61,7 +61,7 @@ Node* insert_after(Node* cur_node, Node* new_node){
     new_node->prev = cur_node;
 }
 
-Node* append(size_t n, char new_date[n]){
+Node* append(size_t n, char new_date[n]){ // c표준: array를 이렇게 넘기라고 되어있음.
     Node* newNode = {"", _tail->prev, _tail};
     _tail->prev = newNode;
     strcpy(newNode->data, new_data);
@@ -97,7 +97,19 @@ Node* get_node(size_t index){
     return curr;
 }
 
-Node* first();
+Node* first() { // 수정 및 보충함.
+    Node* first_node = _head->next;
+
+    if (empty()) {
+        _cur_node = _head;
+        printf("list가 비었습니다.\n");
+        return NULL;
+    }
+    else {
+        _cur_node = first_node;
+        return first_node;
+    }
+}
 
 Node* last();
 
