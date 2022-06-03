@@ -125,6 +125,21 @@ Node* last() { // 수정 및 보충함
 
 }
 
-Node* next();
+Node* next() { // 새로 작성함.
+    Node* next_node = _cur_node->next;
+    if (empty()) {
+        _cur_node = _head;
+        printf("list가 비었습니다.\n");
+        return NULL;
+    }
+    else if (!empty() && _cur_node->next == _tail) {
+
+        return _cur_node;
+    }
+    else {
+        _cur_node = next_node;
+        return next_node;
+    }
+}
 
 Node* prev();
