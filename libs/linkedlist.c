@@ -91,7 +91,7 @@ Node* delete_by_data(char* data){
 }
 
 Node* get_node(size_t index){
-    size_t now_index = 0;
+    size_t now_index = 1;
     Node* curr = _head->next;
     while(now_index < index) {
         if(curr == _tail) return NULL;
