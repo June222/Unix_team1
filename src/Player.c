@@ -1,3 +1,4 @@
+#pragma warning(disable: 4996)
 #include <stdio.h>
 #include "node_2.h"
 #include "textfilewriter_2.h"
