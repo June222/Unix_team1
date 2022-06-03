@@ -142,4 +142,19 @@ Node* next() { // 새로 작성함.
     }
 }
 
-Node* prev();
+Node* prev() { // 새로 작성함.
+    Node* prev_node = _cur_node->prev;
+    if (empty()) {
+        _cur_node = _head;
+        printf("list가 비었습니다.\n");
+        return NULL;
+    }
+    else if (!empty() && _cur_node->prev == _head) {
+
+        return _cur_node;
+    }
+    else {
+        _cur_node = prev_node;
+        return prev_node;
+    }
+}
