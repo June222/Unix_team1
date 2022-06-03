@@ -111,8 +111,50 @@ Node* first() { // 수정 및 보충함.
     }
 }
 
-Node* last();
+Node* last() { // 수정 및 보충함
+    Node* last_node = _tail->prev;
+    if (empty()) {
+        _cur_node = _head;
+        printf("list가 비었습니다.\n");
+        return NULL;
+    }
+    else {
+        _cur_node = last_node;
+        return last_node;
+    }
 
-Node* next();
+}
 
-Node* prev();
+Node* next() { // 새로 작성함.
+    Node* next_node = _cur_node->next;
+    if (empty()) {
+        _cur_node = _head;
+        printf("list가 비었습니다.\n");
+        return NULL;
+    }
+    else if (!empty() && _cur_node->next == _tail) {
+
+        return _cur_node;
+    }
+    else {
+        _cur_node = next_node;
+        return next_node;
+    }
+}
+
+Node* prev() { // 새로 작성함.
+    Node* prev_node = _cur_node->prev;
+    if (empty()) {
+        _cur_node = _head;
+        printf("list가 비었습니다.\n");
+        return NULL;
+    }
+    else if (!empty() && _cur_node->prev == _head) {
+
+        return _cur_node;
+    }
+    else {
+        _cur_node = prev_node;
+        return prev_node;
+    }
+}
